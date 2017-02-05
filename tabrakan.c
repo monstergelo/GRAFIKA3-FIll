@@ -143,6 +143,7 @@ void gambarObjek() {
 		if(pesawat[i_pesawat].isTabrakan != -1){
 			titik d = pesawat[i_pesawat].posisi;
 			titik e = {d.x + 20, d.y+10};
+			titik f = d;
 			
 			
 			// Kepala pesawat
@@ -162,8 +163,10 @@ void gambarObjek() {
 			m[1] = m2;
 			m[2] = m3;
 			m[3] = m4;
-			bufferDrawPlane(m, x, 4);
-
+			bufferDrawPlaneSolid(m, x, 4);
+			f.x = d.x + 0;
+			f.y = d.y + (-5);
+			//fill(f,x);
 
 			
 			// Body
@@ -176,7 +179,10 @@ void gambarObjek() {
 			mb[1] = mb2;
 			mb[2] = mb3;
 			mb[3] = mb4;
-			bufferDrawPlane(mb, x, 4);
+			bufferDrawPlaneSolid(mb, x, 4);
+			f.x = d.x + 0;
+			f.y = d.y + 10;
+			//fill(f,x);
 			
 			// Sayap kanan
 			titik mr1 = {d.x + 0-5, d.y + 11+ 10};
@@ -188,7 +194,10 @@ void gambarObjek() {
 			mr[1] = mr2;
 			mr[2] = mr3;
 			mr[3] = mr4;
-			bufferDrawPlane(mr, x, 4);
+			bufferDrawPlaneSolid(mr, x, 4);
+			f.x = d.x + 0;
+			f.y = d.y + 30;
+			//fill(f,x);
 			
 			// Ekor
 			titik me1 = {d.x + 0-35, d.y + 0 - 7};
@@ -200,7 +209,10 @@ void gambarObjek() {
 			me[1] = me2;
 			me[2] = me3;
 			me[3] = me4;
-			bufferDrawPlane(me, x, 4);
+			bufferDrawPlaneSolid(me, x, 4);
+			f.x = d.x + (-30);
+			f.y = d.y + 0;
+			//fill(f,x);
 		}
 	}
 	
@@ -210,6 +222,7 @@ void gambarObjek() {
 		if(peluru[i_peluru].isTabrakan != -1){
 			/*kepala peluru*/
 			titik d = peluru[i_peluru].posisi;
+			titik f = d;
 			// for (i=0; i<5; i++) {
 			// 	warna c = {200, 150+20*i, 0, 255};
 			// 	bufferDrawCircle(d, 5-1*i, c);
@@ -225,7 +238,10 @@ void gambarObjek() {
 			mp[1] = mp2;
 			mp[2] = mp3;
 			mp[3] = mp4;
-			bufferDrawPlane(mp, x, 4);
+			bufferDrawPlaneSolid(mp, x, 4);
+			f.x = d.x + 2;
+			f.y = d.y + 5;
+			//fill(f,x);
 		}
 	}
 }

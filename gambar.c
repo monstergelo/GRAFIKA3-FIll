@@ -323,3 +323,39 @@ int dotDistance(titik p1, titik p2){
 }
 
 
+int is_default_color(titik p) {
+    if((p.x < 1) || (p.x >= GLOBAL_LAYAR_X) || (p.y < 1) || (p.y >= GLOBAL_LAYAR_Y)){
+        return 0;
+    }
+
+    return buffer_r[p.x][p.y] == 25 && buffer_g[p.x][p.y] == 25
+    && buffer_b[p.x][p.y] == 255 && buffer_a[p.x][p.y] == 255;
+}
+
+void bufferDrawPlaneSolid(titik* p, warna c, int sisi) {
+    int i, x_mid = 0, y_mid = 0;
+    titik flare_point;
+    bufferDrawPlane(p, c, sisi);
+    for (i = 0; i < sisi; i++) {
+        x_mid += p[i].x;
+        y_mid += p[i].y;
+    }
+    flare_point.x = x_mid / sisi;
+    flare_point.y = y_mid / sisi;
+    printf("%d %d\n", flare_point.x, flare_point.y);
+    fill(flare_point, c);
+}
+
+void fill(titik p, warna c) {
+    if (is_default_color(p)) {
+        bufferDrawDot(p, c);
+        titik new_p = {p.x, p.y+1};
+        fill(new_p, c);
+        new_p.x = p.x-1; new_p.y = p.y;
+        fill(new_p, c);
+        new_p.x = p.x+1; new_p.y = p.y;
+        fill(new_p, c);
+        new_p.x = p.x; new_p.y = p.y-1;
+        fill(new_p, c);
+    }
+}

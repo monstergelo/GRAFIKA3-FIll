@@ -27,7 +27,7 @@ ssize_t n;
 int user_input = -99;
 int keypress = 0;
 titik p0 = {400,100};
-titik p1 = {600,600};
+titik p1 = {600,650};
 titik p2 = {300,650};
 titik p3 = {500,650};
 titik p8 = {600, 650};
@@ -39,7 +39,7 @@ titik p12 = {1000,700};
 int main(){
 //**setup-pendengar-keyboard********************************************************************
 	// Input keyboard device file
-    const char *dev = "/dev/input/event3";
+    const char *dev = "/dev/input/by-id/usb-_USB_Keyboard-event-kbd";
     
     // Open device for reference
     fd = open(dev, O_RDONLY);
@@ -62,6 +62,11 @@ int main(){
 	pt[0] = pl0;
 	pt[1] = p0;
 	pt[2] = p1;
+
+	for(int in=0; in<100; in++)
+	{
+		peluru[in].isTabrakan = -1;
+	}
 
 	spawnObjek('a',p0);
 
@@ -157,8 +162,8 @@ void updatePosisi(){
 	}
 
 	refreshBuffer(pl0,pl1);
-	gambarObjek();
 	gambarTembakan();
+	gambarObjek();
 	jalanObjek();
 }
 
