@@ -40,6 +40,7 @@ int main(){
 //**setup-pendengar-keyboard********************************************************************
 	// Input keyboard device file
     const char *dev = "/dev/input/by-id/usb-_USB_Keyboard-event-kbd";
+    //const char *dev = "/dev/input/event3";
     
     // Open device for reference
     fd = open(dev, O_RDONLY);
@@ -173,6 +174,7 @@ void postUpdate(){
 	for(int i=0; i<1; i++){
 		if(pesawat[i].isTabrakan == 1){
 			gambarHancur(pesawat[i].posisi);
+			pesawat[i].posisi.y += 5;
 			pesawat[i].isTabrakan = -1;
 		}
 	}
