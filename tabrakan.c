@@ -138,7 +138,7 @@ void gambarHancur(titik p) {
 void gambarObjek() {
 	int i_pesawat, i_peluru, i, j;
 
-	warna g = {255, 255, 255, 255};
+	warna g = {1, 255, 1, 255};
 	// Gambar pesawat
 	for(i_pesawat = 0; i_pesawat < 1; i_pesawat++) {
 		if(pesawat[i_pesawat].isTabrakan != -1){
@@ -153,7 +153,7 @@ void gambarObjek() {
 			// }
 
 			// Sayap kiri
-			warna x = {255,255,255,255};
+			warna x = {1, 255, 1, 255};
 			titik m1 = {d.x + 0-5, d.y + 0-10};
 			titik m2 = {d.x + 0-5, d.y + 10-10};
 			titik m3 = {d.x + 15-5, d.y + 10-10};
@@ -228,7 +228,7 @@ void gambarObjek() {
 			// 	bufferDrawCircle(d, 5-1*i, c);
 			// }
 
-			warna x = {0,255,0,255};
+			warna x = {255,1,1,255};
 			titik mp1 = {d.x + 0-5, d.y + 0+3};
 			titik mp2 = {d.x + 0-5, d.y + 20+3};
 			titik mp3 = {d.x + 10-5, d.y + 20+3};
@@ -238,7 +238,7 @@ void gambarObjek() {
 			mp[1] = mp2;
 			mp[2] = mp3;
 			mp[3] = mp4;
-			bufferDrawPlaneSolid(mp, x, g, 4);
+			bufferDrawPlaneSolid(mp, x, x, 4);
 			f.x = d.x + 2;
 			f.y = d.y + 5;
 			//fill(f,x);

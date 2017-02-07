@@ -139,7 +139,7 @@ void loadBuffer(){
         }
 }
 
-void bufferDrawLine(titik p0, titik p1, warna c){
+void bufferDrawLine(titik p0, titik p1, warna c) {
 	int dx, dy, x, y, x_end, y_end, px, py, cx1, cx2, cy1, cy2;
 	titik p2;
 	titik p3;
@@ -357,3 +357,83 @@ void fill(titik p, warna c, warna bound_c) {
 		fill(new_p, c, bound_c);
 	}
 }
+
+// NGECOBA NGEBENERIN GARIS, TP TEMBAKANNYA JADI RUSAK...
+// void bufferDrawLineX(titik p0, titik p1, warna c) {
+//     titik p_temp;
+//     float dx, dy, p;
+//     int i, x, y, xend;
+//     int x1 = p0.x; int x2 = p1.x; int y1 = p0.y; int y2 = p1.y;
+//     dx = abs(x2 - x1);
+//     dy = abs(y2 - y1);
+//     p = 2 * dy - dx;
+//     if (x1 > x2) {
+//         x = x2;
+//         y = y2;
+//         xend = x1;
+//     } else {
+//         x = x1;
+//         y = y1;
+//         xend = x2;
+//     }
+//     p_temp.x = x; p_temp.y = y;
+//     bufferDrawDot(p_temp, c);
+//     while (x < xend) {
+//         if (p < 0) {
+//             x = x + 1;
+//             p_temp.x = x; p_temp.y = y;
+//             bufferDrawDot(p_temp, c);
+//             p = p + (2 * dy);
+//         } else {
+//             x = x + 1;
+//             y = y + 1;
+//             p_temp.x = x; p_temp.y = y;
+//             bufferDrawDot(p_temp, c);
+//             p = p + (2 * dy) - (2 * dx);
+//         }
+//     }
+// }
+//
+// void bufferDrawLineY(titik p0, titik p1, warna c) {
+//     titik p_temp;
+//     float dx, dy, p;
+//     int i, x, y, yend;
+//     int x1 = p0.x; int x2 = p1.x; int y1 = p0.y; int y2 = p1.y;
+//     dx = abs(x2 - x1);
+//     dy = abs(y2 - y1);
+//     p = 2 * dx - dy;
+//     if (y1 > y2) {
+//         x = x2;
+//         y = y2;
+//         yend = y1;
+//     } else {
+//         x = x1;
+//         y = y1;
+//         yend = y2;
+//     }
+//     p_temp.x = x; p_temp.y = y;
+//     bufferDrawDot(p_temp, c);
+//     while (y < yend) {
+//         if (p < 0) {
+//             y = y + 1;
+//             p_temp.x = x; p_temp.y = y;
+//             bufferDrawDot(p_temp, c);
+//             p = p + (2 * dx);
+//         } else {
+//             y = y + 1;
+//             x = x + 1;
+//             p_temp.x = x; p_temp.y = y;
+//             bufferDrawDot(p_temp, c);
+//             p = p + (2 * dx) - (2 * dy);
+//         }
+//     }
+// }
+//
+// void bufferDrawLine(titik p0, titik p1, warna c) {
+//     int x1 = p0.x; int x2 = p1.x; int y1 = p0.y; int y2 = p1.y;
+//     if (abs(x2 - x1) >= abs(y2 - y1)) {
+//         bufferDrawLineX(p0, p1, c);
+//     } else {
+//         bufferDrawLineY(p0, p1, c);
+//     }
+// }
