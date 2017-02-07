@@ -138,14 +138,13 @@ void gambarHancur(titik p) {
 void gambarObjek() {
 	int i_pesawat, i_peluru, i, j;
 
-	warna g = {0, 255, 0, 255};
+	warna g = {255, 255, 255, 255};
 	// Gambar pesawat
 	for(i_pesawat = 0; i_pesawat < 1; i_pesawat++) {
 		if(pesawat[i_pesawat].isTabrakan != -1){
 			titik d = pesawat[i_pesawat].posisi;
 			titik e = {d.x + 20, d.y+10};
 			titik f = d;
-
 
 			// Kepala pesawat
 			// for (i=0; i<10; i++) {
@@ -229,7 +228,7 @@ void gambarObjek() {
 			// 	bufferDrawCircle(d, 5-1*i, c);
 			// }
 
-			warna x = {255,255,255,255};
+			warna x = {0,255,0,255};
 			titik mp1 = {d.x + 0-5, d.y + 0+3};
 			titik mp2 = {d.x + 0-5, d.y + 20+3};
 			titik mp3 = {d.x + 10-5, d.y + 20+3};

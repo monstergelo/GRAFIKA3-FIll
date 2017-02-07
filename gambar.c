@@ -323,8 +323,8 @@ int dotDistance(titik p1, titik p2){
 }
 
 int is_color(titik p, warna c) {
-  if((p.x < 1) || (p.x >= GLOBAL_LAYAR_X) || (p.y < 1) || (p.y >= GLOBAL_LAYAR_Y)){
-      return 0;
+  if ((p.x < 1) || (p.x >= GLOBAL_LAYAR_X) || (p.y < 1) || (p.y >= GLOBAL_LAYAR_Y)){
+      return 1;
   }
 
 	return buffer_r[p.x][p.y] == c.r && buffer_g[p.x][p.y] == c.g
@@ -341,7 +341,6 @@ void bufferDrawPlaneSolid(titik* p, warna c, warna bound_c, int sisi) {
 	}
 	flare_point.x = x_mid / sisi;
 	flare_point.y = y_mid / sisi;
-	printf("%d %d\n", flare_point.x, flare_point.y);
 	fill(flare_point, c, bound_c);
 }
 
