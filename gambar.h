@@ -12,14 +12,14 @@ unsigned char buffer_g[GLOBAL_LAYAR_X][GLOBAL_LAYAR_Y];
 unsigned char buffer_b[GLOBAL_LAYAR_X][GLOBAL_LAYAR_Y];
 unsigned char buffer_a[GLOBAL_LAYAR_X][GLOBAL_LAYAR_Y];
 
-// Melakukan assign warna c pada 
+// Melakukan assign warna c pada
 // posisi c pada matriks framebuffer
 void bufferDrawDot(titik p, warna c);
 
 //memasukka warna pixel pada driver
 void DrawDot(titik p, warna c);
 
-// Melakukan assign warna default ke matriks 
+// Melakukan assign warna default ke matriks
 // buffer (bukan matriks framebuffer) berupa
 // segi empat yang dibentuk oleh dua titik p0 dan p1
 void refreshBuffer(titik p0, titik p1);
@@ -28,12 +28,10 @@ void refreshBuffer(titik p0, titik p1);
 // ke matriks framebuffer.
 void loadBuffer();
 
-//membuat bidang yang menyambungkan titik p[0] ke p[1], p[1] ke p[2], ...., p[n] ke p[0]
-//dengan warna solid
-void bufferDrawPlaneSolid(titik* p, warna c, int sisi);	
+void bufferDrawPlaneSolid(titik* p, warna c, warna bound_c, int sisi);	//membuat bidang yang menyambungkan titik p[0] ke p[1], p[1] ke p[2], ...., p[n] ke p[0]
+	                                                //dengan warna solid
 
-//melakukan pewarnaan flood denganp sebagai titik api
-void fill(titik p, warna c);
+void fill(titik p, warna c, warna bound_c);	//melakukan pewarnaan flood denganp sebagai titik api
 
 
 //================================================
