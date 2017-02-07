@@ -1,6 +1,6 @@
-#include "tabrakan.h" 
-#include "tembakan.h" 
-#include <math.h> 
+#include "tabrakan.h"
+#include "tembakan.h"
+#include <math.h>
 #include <stdlib.h>
 #include <time.h>
 
@@ -18,16 +18,16 @@ extern objekTabrak peluru[100];
 void cekTabrakanObjek(int offset){
 	int qq = pesawatterakhir;
 	int ww = peluruterakhir;
-	
+
 	for (int i =0; i<qq ; i++){
 		for (int j =0; j<ww ; j++){
-			
+
 			float jarak = sqrt((pesawat[i].posisi.x-peluru[j].posisi.x)*(pesawat[i].posisi.x-peluru[j].posisi.x)+(pesawat[i].posisi.y-peluru[j].posisi.y)*(pesawat[i].posisi.y-peluru[j].posisi.y));
-			
+
 			if (jarak<=offset){
 				pesawat[i].isTabrakan=1;
 				peluru[j].isTabrakan=1;
-				
+
 			}
 		}
 	}
@@ -46,13 +46,13 @@ void hancurObjek(objekTabrak* o){
 void jalanObjek(){
 	int qq = pesawatterakhir;
 	int ww = peluruterakhir;
-	
+
 	double val = PI / 180.0;
-	
+
 	for (int i =0; i<qq ; i++){
-		
+
 		if(pesawat[i].isTabrakan==0){
-			
+
 			if(pesawat[i].arah<=180){
 				pesawat[i].posisi.x = pesawat[i].posisi.x+(cos(pesawat[i].arah*val)*pesawat[i].kecepatan);
 				pesawat[i].posisi.y = pesawat[i].posisi.y+(sin(pesawat[i].arah*val)*pesawat[i].kecepatan);
@@ -61,9 +61,9 @@ void jalanObjek(){
 				pesawat[i].posisi.y = pesawat[i].posisi.y-(sin(pesawat[i].arah*val)*pesawat[i].kecepatan);
 			}
 		}
-	} 
-	
-	
+	}
+
+
 	for (int i =0; i<ww ; i++){
 		if(peluru[i].isTabrakan==0){
 		peluru[i].posisi.x = peluru[i].posisi.x+(cos(peluru[i].arah*val)*peluru[i].kecepatan);
@@ -76,32 +76,32 @@ void jalanObjek(){
 //membuat objek baru(a=pesawat; b=peluru) pada posisi p
 void spawnObjek(char t, titik p){
 	if (t=='a'){
-		
+
 		pesawat[pesawatterakhir].posisi = p;
 		pesawat[pesawatterakhir].arah = 0;
 		pesawat[pesawatterakhir].kecepatan = 5;
 		pesawat[pesawatterakhir].isTabrakan = 0;
 		pesawatterakhir++;
-		
+
 	}else if (t=='b'){
-	
+
 		peluru[peluruterakhir].posisi = p;
 		peluru[peluruterakhir].kecepatan = 25;
 		peluru[peluruterakhir].arah = 90 - prime.kemiringan;
 		peluru[peluruterakhir].isTabrakan = 0;
 		peluruterakhir++;
-		
+
 	}
-	
-	
+
+
 }
 
 void gambarHancur(titik p) {
-	
+
 	//titik pe = {p.x,p.y};
 	static int i = 0;
 	static int stage = 0;
-	
+
 	//titik pd = {p.x+10,p.y-10};
 	if(i<10 && stage == 0){
 		warna c = {255, 10+20*i, 0, 255};
@@ -111,7 +111,7 @@ void gambarHancur(titik p) {
 	else{
 		stage = 1;
 	}
-	
+
 
 	if(i>0 && stage == 1){
 		warna c = {255, 200-15*i, 0, 255};
@@ -119,7 +119,7 @@ void gambarHancur(titik p) {
 		i--;
 	}
 	/* Use this one for bigger explosion
-	 * 
+	 *
 	for (i=0;i<10;i++) {
 		usleep(50000-(i*5000));
 		warna c = {255, 10+20*i, 0, 255};
@@ -137,21 +137,22 @@ void gambarHancur(titik p) {
 //**************************************************************************************************
 void gambarObjek() {
 	int i_pesawat, i_peluru, i, j;
-	
+
+	warna g = {0, 255, 0, 255};
 	// Gambar pesawat
 	for(i_pesawat = 0; i_pesawat < 1; i_pesawat++) {
 		if(pesawat[i_pesawat].isTabrakan != -1){
 			titik d = pesawat[i_pesawat].posisi;
 			titik e = {d.x + 20, d.y+10};
 			titik f = d;
-			
-			
+
+
 			// Kepala pesawat
 			// for (i=0; i<10; i++) {
 			// 	warna c = {235+i*2, 235+i*2, 235+i*2, 255};
 			// 	bufferDrawCircle(e, 10-1*i, c);
 			// }
-			
+
 			// Sayap kiri
 			warna x = {255,255,255,255};
 			titik m1 = {d.x + 0-5, d.y + 0-10};
@@ -163,12 +164,12 @@ void gambarObjek() {
 			m[1] = m2;
 			m[2] = m3;
 			m[3] = m4;
-			bufferDrawPlaneSolid(m, x, 4);
+			bufferDrawPlaneSolid(m, x, g, 4);
 			f.x = d.x + 0;
 			f.y = d.y + (-5);
 			//fill(f,x);
 
-			
+
 			// Body
 			titik mb1 = {d.x + 0-27, d.y + 0};
 			titik mb2 = {d.x + 0-27, d.y + 21};
@@ -179,11 +180,11 @@ void gambarObjek() {
 			mb[1] = mb2;
 			mb[2] = mb3;
 			mb[3] = mb4;
-			bufferDrawPlaneSolid(mb, x, 4);
+			bufferDrawPlaneSolid(mb, x, g, 4);
 			f.x = d.x + 0;
 			f.y = d.y + 10;
 			//fill(f,x);
-			
+
 			// Sayap kanan
 			titik mr1 = {d.x + 0-5, d.y + 11+ 10};
 			titik mr2 = {d.x + 0-5, d.y + 25+ 10};
@@ -194,11 +195,11 @@ void gambarObjek() {
 			mr[1] = mr2;
 			mr[2] = mr3;
 			mr[3] = mr4;
-			bufferDrawPlaneSolid(mr, x, 4);
+			bufferDrawPlaneSolid(mr, x, g, 4);
 			f.x = d.x + 0;
 			f.y = d.y + 30;
 			//fill(f,x);
-			
+
 			// Ekor
 			titik me1 = {d.x + 0-35, d.y + 0 - 7};
 			titik me2 = {d.x + 0-35, d.y + 28 - 7};
@@ -209,14 +210,14 @@ void gambarObjek() {
 			me[1] = me2;
 			me[2] = me3;
 			me[3] = me4;
-			bufferDrawPlaneSolid(me, x, 4);
+			bufferDrawPlaneSolid(me, x, g, 4);
 			f.x = d.x + (-30);
 			f.y = d.y + 0;
 			//fill(f,x);
 		}
 	}
-	
-	
+
+
 	// Gambar peluru
 	for(i_peluru = 0; i_peluru < 99; i_peluru++) {
 		if(peluru[i_peluru].isTabrakan != -1){
@@ -238,7 +239,7 @@ void gambarObjek() {
 			mp[1] = mp2;
 			mp[2] = mp3;
 			mp[3] = mp4;
-			bufferDrawPlaneSolid(mp, x, 4);
+			bufferDrawPlaneSolid(mp, x, g, 4);
 			f.x = d.x + 2;
 			f.y = d.y + 5;
 			//fill(f,x);
@@ -250,20 +251,20 @@ void gambarObjek() {
 //**************************************************************************************************
 void gambarObjek2() {
 	int i_pesawat, i_peluru, i, j;
-	
+
 	// Gambar pesawat
 	for(i_pesawat = 0; i_pesawat < 1; i_pesawat++) {
 		if(pesawat[i_pesawat].isTabrakan != -1){
 			titik d = pesawat[i_pesawat].posisi;
 			titik e = {d.x + 20, d.y+10};
-			
-			
+
+
 			// Kepala pesawat
 			for (i=0; i<10; i++) {
 				warna c = {235+i*2, 235+i*2, 235+i*2, 255};
 				bufferDrawCircle(e, 10-1*i, c);
 			}
-			
+
 			// Sayap kiri
 			for(i = 0; i < 15; i++) {
 				for(j = 0; j < 25; j++){
@@ -272,7 +273,7 @@ void gambarObjek2() {
 					bufferDrawDot(m, x);
 				}
 			}
-			
+
 			// Body
 			for(i = 0; i < 50; i++) {
 				for(j = 0; j < 21; j++){
@@ -281,7 +282,7 @@ void gambarObjek2() {
 					bufferDrawDot(m, x);
 				}
 			}
-			
+
 			// Sayap kanan
 			for(i = 0; i < 15; i++) {
 				for(j = 0; j < 25; j++){
@@ -290,7 +291,7 @@ void gambarObjek2() {
 					bufferDrawDot(m, x);
 				}
 			}
-			
+
 			// Ekor
 			for(i = 0; i < 10; i++) {
 				for(j = 0; j < 28; j++){
@@ -301,8 +302,8 @@ void gambarObjek2() {
 			}
 		}
 	}
-	
-	
+
+
 	// Gambar peluru
 	for(i_peluru = 0; i_peluru < 1; i_peluru++) {
 		if(peluru[i_peluru].isTabrakan != -1){
@@ -321,4 +322,3 @@ void gambarObjek2() {
 		}
 	}
 }
-
