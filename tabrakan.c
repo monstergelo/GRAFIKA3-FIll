@@ -324,6 +324,7 @@ void gambarObjek2() {
 void spawnPecahan(titik p){
 	titik p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20;
 	int scale = 20;
+	warna g = {1, 255, 1, 255};
 	warna x = {20, 254, 76, 255};
 	p1.x = p.x - (4*scale); p1.y = p.y + (2*scale);
 	p2.x = p.x - (3*scale); p2.y = p.y + (2*scale);
@@ -346,25 +347,23 @@ void spawnPecahan(titik p){
 	p19.x = p.x + (3*scale); p19.y = p.y - (1*scale);
 	p20.x = p.x + (4*scale); p20.y = p.y - (1*scale);
 	
-	bufferDrawLine(p1,p2,x);
-	bufferDrawLine(p2,p4,x);
-	bufferDrawLine(p3,p1,x);
-	bufferDrawLine(p4,p3,x);
-	bufferDrawLine(p5,p6,x);
-	bufferDrawLine(p6,p8,x);
-	bufferDrawLine(p7,p8,x);
-	bufferDrawLine(p7,p5,x);
-	bufferDrawLine(p9,p10,x);
-	bufferDrawLine(p10,p12,x);
-	bufferDrawLine(p11,p12,x);
-	bufferDrawLine(p11,p9,x);
-	bufferDrawLine(p13,p14,x);
-	bufferDrawLine(p14,p16,x);
-	bufferDrawLine(p15,p16,x);
-	bufferDrawLine(p15,p13,x);
-	bufferDrawLine(p17,p18,x);
-	bufferDrawLine(p18,p20,x);
-	bufferDrawLine(p19,p20,x);
-	bufferDrawLine(p19,p17,x);
+	titik p000[4] = {p1,p2,p4,p3};
+	bufferDrawPlaneSolid(p000, g, g, 4);
+
+
+	titik p111[4] = {p5,p6,p8,p7};
+	bufferDrawPlaneSolid(p111, g, g, 4);
+
+
+	titik p222[4] = {p9,p10,p12,p11};
+	bufferDrawPlaneSolid(p222, g, g, 4);
+
+
+	titik p333[4] = {p13,p14,p16,p15};
+	bufferDrawPlaneSolid(p333, g, g, 4);
+
+
+	titik p444[4] = {p17,p18,p20,p19};
+	bufferDrawPlaneSolid(p444, g, g, 4);
 
 }

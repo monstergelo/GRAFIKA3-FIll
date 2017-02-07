@@ -163,8 +163,8 @@ void updatePosisi(){
 	}
 
 	refreshBuffer(pl0,pl1);
-	gambarTembakan();
 	gambarObjek();
+	gambarTembakan();
 	jalanObjek();
 }
 
